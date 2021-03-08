@@ -18,15 +18,15 @@ class User < ApplicationRecord
   CHILDREN_CLASSES = %w(Teacher Nurse Student)
   has_and_belongs_to_many(
     :subjects, # performs
-    foreign_key: :object_id, # joins table on key
-    association_foreign_key: :subject_id,
+    foreign_key: :object_id, # used in where clause in joined table
+    association_foreign_key: :subject_id, # joins table on key
     join_table: :school_relations,
     class_name: name
   )
   has_and_belongs_to_many(
     :objects, # receives
-    foreign_key: :subject_id, # joins table on key
-    association_foreign_key: :object_id,
+    foreign_key: :subject_id, # used in where clause in joined table
+    association_foreign_key: :object_id, # joins table on key
     join_table: :school_relations,
     class_name: name
   )
