@@ -17,16 +17,18 @@ ActiveRecord::Schema.define(version: 2021_03_06_184823) do
     t.bigint "subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["object_id"], name: "index_school_relations_on_object_id"
+    t.index ["object_id", "subject_id"], name: "index_school_relations_on_object_id_and_subject_id", unique: true
     t.index ["subject_id", "object_id"], name: "index_school_relations_on_subject_id_and_object_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.integer "age", null: false
     t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["type"], name: "index_users_on_type"
+    t.index ["type", "last_name", "first_name", "age"], name: "index_users_on_type_and_last_name_and_first_name_and_age"
   end
 
 end
